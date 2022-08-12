@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
@@ -11,7 +12,11 @@ export default function Home() {
         <meta name='description' content='Herb Chat Messenger' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      index 영역
+      <div>
+        <Image src='/messenger-icon.jpeg' height={320} width={320} />
+        <h2>Herb Chat Messenger</h2>
+        <p>Select a contact and use the messenger.</p>
+      </div>
     </Container>
   );
 }
@@ -23,5 +28,21 @@ const Container = styled.div`
   background-color: #f8fafc;
   width: 100%;
   height: 100%;
-  background-color: #ff9361;
+
+  & div {
+    width: 50%;
+    text-align: center;
+  }
+
+  & h2 {
+    color: #727372;
+  }
+
+  & p {
+    color: #b7b9bb;
+  }
+
+  & img {
+    border-radius: 1rem;
+  }
 `;
