@@ -50,6 +50,7 @@ const Sidebar = () => {
       </SearchChat>
       {chats.map((chat) => (
         <Chat
+          key={chat.name}
           latestMessage={chat.latestMessage}
           name={chat.name}
           timestamp={chat.timestamp}

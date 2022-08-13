@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const Chat = ({ photoURL, name, timestamp, latestMessage }) => {
   const router = useRouter();
   const enterChat = () => {
-    router.push('/chat/123123');
+    router.push('/chat/position');
   };
 
   return (

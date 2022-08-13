@@ -1,6 +1,9 @@
 module.exports = {
+  reactStrictMode: true,
+  images: {
+    domains: ['assets.stickpng.com'],
+  },
   experimental: {
-    // Enables the styled-components SWC transform
     styledComponents: true,
   },
 };
