@@ -1,10 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import moment from 'moment';
 
+import { useAuth } from '../Auth';
+
 import styled from 'styled-components';
 
 const Message = ({ user, message, timestamp }) => {
-  const loginMail = 'jpp901220@gmail.com';
+  const { currentUser } = useAuth();
+  const loginMail = currentUser.email;
   const MessageType = user === loginMail ? MyMessage : FrdMessage;
 
   return (

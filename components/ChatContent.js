@@ -1,8 +1,22 @@
 import { useEffect, useState } from 'react';
 
+import {
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  doc,
+  setDoc,
+  serverTimestamp,
+  addDoc,
+} from '@firebase/firestore';
+import { useAuth } from '../Auth';
+import { db } from '../firebase';
+
+import moment from 'moment';
+
 import Message from './Message';
 import getFriendData from '../utils/getFriendData';
-import messages from '../data/messages.json';
 
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,7 +28,27 @@ import styled from 'styled-components';
 
 const ChatContent = ({ chat, chat_id }) => {
   const [friend, setFriend] = useState({});
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([]);
+  const { currentUser } = useAuth();
   const chatParse = JSON.parse(chat);
+
+  useEffect(() => {
+    const messagesRef = collection(db, 'chats', chat_id, 'messages');
+    const q = query(messagesRef, orderBy('timestamp', 'asc'));
+
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      setMessages(
+        QuerySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          timestamp: doc.data().timestamp?.toDate().getTime(),
+        }))
+      );
+    });
+
+    return unsubscribe;
+  }, [chat_id]);
 
   useEffect(() => {
     if (chatParse.users?.length > 0) {
@@ -26,13 +60,41 @@ const ChatContent = ({ chat, chat_id }) => {
     }
   }, [chat_id]);
 
+  const sendMessage = async (e) => {
+    e.preventDefault();
+
+    const usersRef = doc(db, 'users', currentUser.uid);
+    const messagesRef = collection(db, 'chats', chat_id, 'messages');
+    const chatRef = doc(db, 'chats', chat_id);
+
+    setDoc(usersRef, { lastSeen: serverTimestamp() }, { merge: true });
+
+    await addDoc(messagesRef, {
+      timestamp: serverTimestamp(),
+      message: input,
+      user: currentUser.email,
+      photoURL: currentUser.photoURL,
+    });
+
+    setDoc(
+      chatRef,
+      {
+        latestMessage: input,
+        timestamp: serverTimestamp(),
+      },
+      { merge: true }
+    );
+
+    setInput('');
+  };
+
   return (
     <Container>
       <Header>
         <Avatar src={friend.photoURL} />
         <HeaderInfo>
           <h3>{friend.displayName}</h3>
-          <div>Last Active: 3 hours ago</div>
+          <div>Last Active: {moment(friend.lastSeen?.toDate()).fromNow()}</div>
         </HeaderInfo>
         <IconButton>
           <SearchIcon />
@@ -58,7 +120,14 @@ const ChatContent = ({ chat, chat_id }) => {
         <IconButton>
           <AttachFileIcon />
         </IconButton>
-        <Input placeholder='Please enter a message.' />
+        <Input
+          onChange={(e) => setInput(e.target.value)}
+          placeholder='Type a message'
+          value={input}
+        />
+        <button hidden disabled={!input} type='submit' onClick={sendMessage}>
+          Send message
+        </button>
         <IconButton>
           <MicIcon />
         </IconButton>

@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         lastSeen: serverTimestamp(),
         photoURL: user.photoURL,
       };
+
       await setDoc(doc(db, 'users', user.uid), userData);
       console.log('🥰 user token', token);
       setCurrentUser(user);

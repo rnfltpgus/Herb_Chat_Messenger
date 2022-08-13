@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import moment from 'moment';
+
 import getFriendData from '../utils/getFriendData';
 
 import { Avatar } from '@mui/material';
 import styled from 'styled-components';
 
-const Chat = ({ id, users, timestamp = '', latestMessage = 'Hi~~~' }) => {
+const Chat = ({ id, users, timestamp = '', latestMessage = '' }) => {
   const router = useRouter();
   const [friend, setFriend] = useState({});
 
@@ -28,6 +30,9 @@ const Chat = ({ id, users, timestamp = '', latestMessage = 'Hi~~~' }) => {
       <ChatContainer>
         <div style={{ gridArea: 'name' }}>{friend.displayName}</div>
         <div style={{ gridArea: 'latest_message' }}>{latestMessage}</div>
+        <div style={{ gridArea: 'time', fontSize: '14px' }}>
+          {timestamp ? moment(timestamp?.toDate()).format('LT') : ''}
+        </div>
       </ChatContainer>
     </Container>
   );
