@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { signOut } from '@firebase/auth';
+import { auth } from '../firebase';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -45,7 +48,7 @@ const BasicMenu = () => {
         <MenuItem onClick={handleClose}>Archived</MenuItem>
         <MenuItem onClick={handleClose}>Starred</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={() => signOut(auth)}>Logout</MenuItem>
       </Menu>
     </>
   );

@@ -2,6 +2,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
+import styles from '../styles/Home.module.css';
+
 import styled from 'styled-components';
 
 const Home = () => {
@@ -31,20 +33,20 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  div {
+  & div {
     width: 50%;
     text-align: center;
   }
 
-  h2 {
+  & h2 {
     color: #727372;
   }
 
-  p {
+  & p {
     color: #b7b9bb;
   }
 
-  img {
+  & img {
     border-radius: 1rem;
   }
 `;

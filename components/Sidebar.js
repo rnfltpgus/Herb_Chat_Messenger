@@ -68,6 +68,16 @@ const Container = styled.div`
   min-width: 320px;
   max-width: 450px;
   height: 100%;
+  flex: 0.45;
+  border-right: 1px solid whitesmoke;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  background: #ffffff;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Header = styled.div`
