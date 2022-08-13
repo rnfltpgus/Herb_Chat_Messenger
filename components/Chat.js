@@ -1,25 +1,33 @@
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import moment from 'moment';
+import getFriendData from '../utils/getFriendData';
 
 import { Avatar } from '@mui/material';
 import styled from 'styled-components';
 
-const Chat = ({ photoURL, name, timestamp, latestMessage }) => {
+const Chat = ({ id, users, timestamp = '', latestMessage = 'Hi~~~' }) => {
   const router = useRouter();
+  const [friend, setFriend] = useState({});
+
   const enterChat = () => {
-    router.push('/chat/position');
+    router.push(`/chat/${id}`);
   };
+
+  useEffect(() => {
+    if (users.length > 0) {
+      getFriendData(users).then((data) => {
+        setFriend(data);
+      });
+    }
+  }, [users]);
 
   return (
     <Container onClick={enterChat}>
-      <FrdAvatar src={photoURL} />
+      <FrdAvatar src={friend.photoURL} />
       <ChatContainer>
-        <div style={{ gridArea: 'name' }}>{name}</div>
+        <div style={{ gridArea: 'name' }}>{friend.displayName}</div>
         <div style={{ gridArea: 'latest_message' }}>{latestMessage}</div>
-        <div style={{ gridArea: 'time', fontSize: '14px' }}>
-          {moment(timestamp.seconds * 1000).format('LT')}
-        </div>
       </ChatContainer>
     </Container>
   );

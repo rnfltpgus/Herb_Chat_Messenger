@@ -1,8 +1,19 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
+import { useEffect, useRef, useState } from 'react';
+
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  onSnapshot,
+} from '@firebase/firestore';
+import { db } from '../firebase';
+import { useAuth } from '../Auth';
+
+import Friend from './Friend';
 import Chat from './Chat';
 import CustomVerticalMore from './CustomVerticalMore';
-import chats from '../data/chats.json';
 
 import { Avatar, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
@@ -12,10 +23,64 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 
 const Sidebar = () => {
+  const [friends, setFriends] = useState([]);
+  const [chats, setChats] = useState([]);
+  const [searchFriends, setSearchFriends] = useState(false);
+  const inputAreaRef = useRef(null);
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    const chatsRef = collection(db, 'chats');
+    const q = query(
+      chatsRef,
+      where('users', 'array-contains', currentUser.uid)
+    );
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setChats(
+        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    async function fetchFriends() {
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('email', '!=', currentUser?.email));
+      const querySnapshot = await getDocs(q);
+
+      setFriends(
+        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    }
+
+    fetchFriends();
+  }, []);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (!inputAreaRef.current.contains(e.target)) {
+        setTimeout(() => {
+          setSearchFriends(false);
+        }, 3000);
+      } else {
+        setSearchFriends(true);
+      }
+    };
+
+    document.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', checkIfClickedOutside);
+    };
+  }, []);
+
   return (
     <Container>
       <Header>
-        <UserAvatar src='/sponge-bob.jpeg' />
+        <UserAvatar src={currentUser.photoURL} />
         <IconsGroup>
           <IconButton>
             <img src='/story.svg' alt='새로고침' />
@@ -45,18 +110,36 @@ const Sidebar = () => {
       <SearchChat>
         <SearchBar>
           <SearchIcon />
-          <SearchInput />
+          <SearchInput
+            ref={inputAreaRef}
+            placeholder='Search or start a new chat'
+          />
         </SearchBar>
       </SearchChat>
-      {chats.map((chat) => (
-        <Chat
-          key={chat.name}
-          latestMessage={chat.latestMessage}
-          name={chat.name}
-          timestamp={chat.timestamp}
-          photoURL={chat.photoURL}
-        />
-      ))}
+      {searchFriends ? (
+        <>
+          {friends.map((friend) => (
+            <Friend
+              key={friend.id}
+              photoURL={friend.photoURL}
+              displayName={friend.displayName}
+              id={friend.id}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          {chats.map((chat) => (
+            <Chat
+              key={chat.id}
+              id={chat.id}
+              users={chat.users}
+              latestMessage={chat.latestMessage}
+              timestamp={chat.timestamp}
+            />
+          ))}
+        </>
+      )}
     </Container>
   );
 };

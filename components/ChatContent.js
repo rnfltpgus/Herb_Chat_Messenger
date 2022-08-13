@@ -1,5 +1,8 @@
-import messages from '../data/messages.json';
+import { useEffect, useState } from 'react';
+
 import Message from './Message';
+import getFriendData from '../utils/getFriendData';
+import messages from '../data/messages.json';
 
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,17 +12,26 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import styled from 'styled-components';
 
-const ChatContent = () => {
+const ChatContent = ({ chat, chat_id }) => {
+  const [friend, setFriend] = useState({});
+  const chatParse = JSON.parse(chat);
+
+  useEffect(() => {
+    if (chatParse.users?.length > 0) {
+      getFriendData(chatParse.users).then((data) => {
+        setFriend(data);
+      });
+    } else {
+      console.log('😢 without chatParse');
+    }
+  }, [chat_id]);
+
   return (
     <Container>
       <Header>
-        <Avatar
-          src={
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr0bMDt6CJHJSXTHmTPJ4atDrJzfA-vWT1w&usqp=CAU'
-          }
-        />
+        <Avatar src={friend.photoURL} />
         <HeaderInfo>
-          <h3>Dong</h3>
+          <h3>{friend.displayName}</h3>
           <div>Last Active: 3 hours ago</div>
         </HeaderInfo>
         <IconButton>

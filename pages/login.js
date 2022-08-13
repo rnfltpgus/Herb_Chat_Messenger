@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Image from 'next/image';
-import { auth, provider } from '../firebase';
+
 import { signInWithPopup } from '@firebase/auth';
+import { auth, provider } from '../firebase';
 
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
