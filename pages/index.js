@@ -31,20 +31,20 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  & div {
+  div {
     width: 50%;
     text-align: center;
   }
 
-  & h2 {
+  h2 {
     color: #727372;
   }
 
-  & p {
+  p {
     color: #b7b9bb;
   }
 
-  & img {
+  img {
     border-radius: 1rem;
   }
 `;

@@ -1,10 +1,14 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
+import Chat from './Chat';
 import CustomVerticalMore from './CustomVerticalMore';
+import chats from '../data/chats.json';
 
 import { Avatar, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import SearchIcon from '@mui/icons-material/Search';
-
+import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 
 const Sidebar = () => {
@@ -22,12 +26,36 @@ const Sidebar = () => {
           <CustomVerticalMore />
         </IconsGroup>
       </Header>
+      <Notification>
+        <NotificationAvatar>
+          <NotificationsOffIcon style={{ color: '#9DE1FE' }} />
+        </NotificationAvatar>
+        <NotificationText>
+          <div>Get Notified of New Messages</div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <a href='#'>
+              <u>Turn on desktop notifications</u>
+            </a>
+            <IconButton>
+              <ArrowForwardIosIcon style={{ width: 15, height: 15 }} />
+            </IconButton>
+          </div>
+        </NotificationText>
+      </Notification>
       <SearchChat>
         <SearchBar>
           <SearchIcon />
           <SearchInput />
         </SearchBar>
       </SearchChat>
+      {chats.map((chat) => (
+        <Chat
+          latestMessage={chat.latestMessage}
+          name={chat.name}
+          timestamp={chat.timestamp}
+          photoURL={chat.photoURL}
+        />
+      ))}
     </Container>
   );
 };
@@ -56,6 +84,7 @@ const Header = styled.div`
 
 const UserAvatar = styled(Avatar)`
   cursor: pointer;
+
   :hover {
     opacity: 0.8;
   }
@@ -80,4 +109,21 @@ const SearchBar = styled.div`
 const SearchInput = styled.input`
   width: 100%;
   border: none;
+`;
+
+const Notification = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #9de1fe;
+`;
+
+const NotificationAvatar = styled(Avatar)`
+  background-color: white;
+`;
+
+const NotificationText = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
