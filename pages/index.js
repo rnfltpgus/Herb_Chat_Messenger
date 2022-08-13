@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+
 import styled from 'styled-components';
 
-export default function Home() {
+const Home = () => {
   return (
     <Container>
       <Head>
@@ -19,7 +19,9 @@ export default function Home() {
       </div>
     </Container>
   );
-}
+};
+
+export default Home;
 
 const Container = styled.div`
   display: flex;
