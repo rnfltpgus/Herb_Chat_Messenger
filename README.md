@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Herb Chat Messenger
 
-## Getting Started
+Next.js와 Electron을 이용한 Chat Messenger 입니다.
 
-First, run the development server:
+<br/>
 
-```bash
-npm run dev
-# or
-yarn dev
+## 📅 Schedule
+
+**2022년 08월 09일 ~ 2022년 08월 11일**
+
+- 기능 구현 배치 구상
+- Next.js, Electron 학습
+
+**2022년 08월 11일 ~ 2022년 08월 15일**
+
+- 기능 개발
+- 테스트 케이스 작성, UI 작업
+
+<br/>
+
+## 📚 Stack
+
+- React
+- Next.js
+- Electron
+- Firebase (Authentication(구글) 및 FireStore Database)
+- TypeScript → `진행중`
+- Cypress → `진행중`
+
+<br>
+
+## ⚙️ Function List
+
+✅ 회원가입(구글) <br>
+✅ 로그인 <br>
+✅ 유저목록 <br>
+✅ 1:1 채팅 <br>
+❌ 그룹채팅 <br>
+
+<br>
+
+## 📁 Installation
+
+1. 프로젝트를 다운 받은 후 프로젝트 디렉토리 내부에서 다음 명령어 입력
+
+```
+npm install or npm i
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 환경설정 (.env file)을 아래와 같이 입력해야 합니다.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=<YOUR_FIREBASE_API_KEY>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR_FIREBASE_AUTH_DOMAIN>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_FIREBASE_PROJECT_ID>
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<YOUR_FIREBASE_STORAGE_BUCKET>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<YOUR_FIREBASE_MESSAGING_SENDER_ID>
+NEXT_PUBLIC_FIREBASE_APP_ID=<YOUR_FIREBASE_API_ID>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+BROWSER=none
+```
