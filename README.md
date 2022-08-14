@@ -2,7 +2,7 @@
 
 Next.js와 Electron을 이용한 Chat Messenger 입니다.
 
-<br/>
+<br>
 
 ## 📅 Schedule
 
@@ -16,7 +16,7 @@ Next.js와 Electron을 이용한 Chat Messenger 입니다.
 - 기능 개발
 - 테스트 케이스 작성, UI 작업
 
-<br/>
+<br>
 
 ## 📚 Stack
 
@@ -60,3 +60,10 @@ NEXT_PUBLIC_FIREBASE_APP_ID=<YOUR_FIREBASE_API_ID>
 
 BROWSER=none
 ```
+
+<br>
+
+## 🔫 Uniqueness
+
+- `디자인을 위해` 화면에 아이콘들을 사용하여 배치하였는데, **"새로고침, 뒤로가기, 검색" 등만 필수요소**라고 판단하여 가능구현을 하였습니다.
+  - 나머지의 기능 아이콘은 차후 구현하겠습니다.
