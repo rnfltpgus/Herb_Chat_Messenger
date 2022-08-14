@@ -35,7 +35,7 @@ Next.js와 Electron을 이용한 Chat Messenger 입니다.
 ✅ 로그인 <br>
 ✅ 유저목록 <br>
 ✅ 1:1 채팅 <br>
-❌ 그룹채팅 <br>
+❌ 그룹채팅 → `진행중` <br>
 
 <br>
 
