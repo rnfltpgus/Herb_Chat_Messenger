@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import {
   collection,
@@ -18,11 +19,13 @@ import CustomVerticalMore from './CustomVerticalMore';
 import { Avatar, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import SearchIcon from '@mui/icons-material/Search';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 
 const Sidebar = () => {
+  const router = useRouter();
   const [friends, setFriends] = useState([]);
   const [chats, setChats] = useState([]);
   const [searchFriends, setSearchFriends] = useState(false);
@@ -82,8 +85,8 @@ const Sidebar = () => {
       <Header>
         <UserAvatar src={currentUser.photoURL} />
         <IconsGroup>
-          <IconButton>
-            <img src='/story.svg' alt='새로고침' />
+          <IconButton type='button' onClick={() => router.reload()}>
+            <RefreshIcon />
           </IconButton>
           <IconButton>
             <ChatIcon />

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import {
   collection,
@@ -20,13 +21,14 @@ import getFriendData from '../utils/getFriendData';
 
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import styled from 'styled-components';
 
 const ChatContent = ({ chat, chat_id }) => {
+  const router = useRouter();
   const [friend, setFriend] = useState({});
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -99,8 +101,8 @@ const ChatContent = ({ chat, chat_id }) => {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <IconButton>
-          <MoreVertIcon />
+        <IconButton type='button' onClick={() => router.back()}>
+          <ArrowBackIcon />
         </IconButton>
       </Header>
       <MessagesContainer>
@@ -122,7 +124,7 @@ const ChatContent = ({ chat, chat_id }) => {
         </IconButton>
         <Input
           onChange={(e) => setInput(e.target.value)}
-          placeholder='Type a message'
+          placeholder='Please enter a message.'
           value={input}
         />
         <button hidden disabled={!input} type='submit' onClick={sendMessage}>

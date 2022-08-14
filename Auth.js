@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     return auth.onIdTokenChanged(async (user) => {
       if (!user) {
-        console.log('👺 no user');
         setCurrentUser(null);
         setLoading(false);
         return;
@@ -30,7 +29,6 @@ export const AuthProvider = ({ children }) => {
       };
 
       await setDoc(doc(db, 'users', user.uid), userData);
-      console.log('🥰 user token', token);
       setCurrentUser(user);
       setLoading(false);
     });
