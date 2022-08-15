@@ -20,14 +20,14 @@
     "jsx": "preserve"
   },
   "include": [
-    "next-env.d.ts",
+    "src/next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Chat.tsx",
+    "src/components/Chat.tsx",
     "render/Auth.tsx",
-    "components/Message.tsx",
+    "src/components/Message.tsx",
     "main/main.js",
-    "components/Sidebar.tsx"
+    "src/components/Sidebar.tsx"
   ],
   "exclude": [
     "node_modules"
