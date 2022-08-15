@@ -22,8 +22,13 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "components/Chat.js"  ],
+    "**/*.tsx",
+    "components/Chat.tsx",
+    "render/Auth.tsx",
+    "components/Message.tsx",
+    "main/main.js",
+    "components/Sidebar.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

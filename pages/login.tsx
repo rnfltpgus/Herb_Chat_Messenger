@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
+import type { NextPage } from 'next';
 import Image from 'next/image';
+import { OnClick } from '../types';
 
 import { signInWithPopup } from '@firebase/auth';
 import { auth, provider } from '../firebase';
@@ -8,8 +10,8 @@ import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import styled from 'styled-components';
 
-const login = () => {
-  const loginWithGoogle = () => {
+const login: NextPage = () => {
+  const loginWithGoogle: OnClick = () => {
     signInWithPopup(auth, provider);
   };
 

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-
 import {
   collection,
   getDocs,
@@ -9,9 +8,9 @@ import {
   where,
   onSnapshot,
 } from '@firebase/firestore';
+
 import { db } from '../firebase';
 import { useAuth } from '../Auth';
-
 import Friend from './Friend';
 import Chat from './Chat';
 import CustomVerticalMore from './CustomVerticalMore';
