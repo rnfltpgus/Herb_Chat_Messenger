@@ -2,6 +2,7 @@
 import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+
 import {
   collection,
   getDocs,

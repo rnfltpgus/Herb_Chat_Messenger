@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import type { NextPage } from 'next';
+
 import moment from 'moment';
 
 import { useAuth } from '../Auth';
+import { MessageProps } from '../types/index';
 
 import styled from 'styled-components';
 
-const Message = ({ user, message, timestamp }) => {
+const Message: NextPage<MessageProps> = ({ user, message, timestamp }) => {
   const { currentUser } = useAuth();
   const loginMail = currentUser.email;
   const MessageType = user === loginMail ? MyMessage : FrdMessage;

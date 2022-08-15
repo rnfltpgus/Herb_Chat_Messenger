@@ -11,7 +11,7 @@ Next.js와 Electron을 이용한 Chat Messenger 입니다.
 - 기능 구현 배치 구상
 - Next.js, Electron 학습
 
-**2022년 08월 11일 ~ 2022년 08월 15일**
+**2022년 08월 11일 ~ 2022년 08월 16일**
 
 - 기능 개발
 - 테스트 케이스 작성, UI 작업
@@ -24,7 +24,7 @@ Next.js와 Electron을 이용한 Chat Messenger 입니다.
 - Next.js
 - Electron
 - Firebase (Authentication(구글) 및 FireStore Database)
-- TypeScript → `진행중`
+- TypeScript
 - Cypress → `진행중`
 
 <br>

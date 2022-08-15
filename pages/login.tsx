@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { signInWithPopup } from '@firebase/auth';
+
 import { auth, provider } from '../firebase';
 import { OnClick } from '../types';
 

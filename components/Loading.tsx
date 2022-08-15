@@ -1,8 +1,12 @@
+import type { NextPage } from 'next';
+
 import ReactLoading from 'react-loading';
+
+import { LoadingProps } from '../types/index';
 
 import { Grid } from '@mui/material';
 
-const Loading = ({ type, color }) => {
+const Loading: NextPage<LoadingProps> = ({ type, color }) => {
   return (
     <Grid
       container

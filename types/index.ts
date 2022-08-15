@@ -16,7 +16,7 @@ export type OnClick = (
 // Props
 export interface ChatProps {
   id: string;
-  users: string;
+  users: string[];
   timestamp: string;
   latestMessage: string;
 }
@@ -30,4 +30,20 @@ export interface FriendProps {
 export interface ChatBoxProps {
   id: string;
   chat: string;
+}
+
+export interface ChatContentProps {
+  chat: string;
+  chat_id: string;
+}
+
+export interface LoadingProps {
+  type: string;
+  color: string;
+}
+
+export interface MessageProps {
+  user: string;
+  message: string;
+  timestamp: string;
 }

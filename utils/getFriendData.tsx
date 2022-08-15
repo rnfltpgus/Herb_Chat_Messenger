@@ -1,5 +1,6 @@
 import { getAuth } from '@firebase/auth';
 import { doc, getDoc } from '@firebase/firestore';
+
 import { db } from '../firebase';
 
 const getFriendData = async (users: any[]) => {

@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 
 import { addDoc, collection, getDocs, query, where } from '@firebase/firestore';
+
 import { useAuth } from '../Auth';
 import { db } from '../firebase';
 import { FriendProps } from '../types/index';

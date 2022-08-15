@@ -1,3 +1,4 @@
+import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,13 +12,13 @@ import {
   serverTimestamp,
   addDoc,
 } from '@firebase/firestore';
-import { useAuth } from '../Auth';
-import { db } from '../firebase';
-
 import moment from 'moment';
 
+import { useAuth } from '../Auth';
+import { db } from '../firebase';
 import Message from './Message';
 import getFriendData from '../utils/getFriendData';
+import { ChatContentProps } from '../types';
 
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -27,7 +28,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import styled from 'styled-components';
 
-const ChatContent = ({ chat, chat_id }) => {
+const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
   const router = useRouter();
   const [friend, setFriend] = useState({});
   const [input, setInput] = useState('');
