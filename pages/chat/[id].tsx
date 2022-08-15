@@ -1,11 +1,14 @@
-import { doc, getDoc } from '@firebase/firestore';
-import { db } from '../../firebase';
+import type { NextPage } from 'next';
 
+import { doc, getDoc } from '@firebase/firestore';
+
+import { db } from '../../firebase';
 import ChatContent from '../../components/ChatContent';
+import { ChatBoxProps } from '../../types';
 
 import styled from 'styled-components';
 
-const ChatBox = ({ chat, id }) => {
+const ChatBox: NextPage<ChatBoxProps> = ({ chat, id }) => {
   return (
     <Container>
       <ChatContainer>
@@ -17,9 +20,10 @@ const ChatBox = ({ chat, id }) => {
 
 export default ChatBox;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: { query: { id: string } }) {
   const docRef = doc(db, 'chats', context.query.id);
   const docSnap = await getDoc(docRef);
+
   return {
     props: {
       chat: JSON.stringify(docSnap.data()),

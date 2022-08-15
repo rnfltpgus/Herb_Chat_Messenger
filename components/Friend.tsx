@@ -1,24 +1,27 @@
+import type { NextPage } from 'next';
+
 import { addDoc, collection, getDocs, query, where } from '@firebase/firestore';
 import { useAuth } from '../Auth';
 import { db } from '../firebase';
+import { FriendProps } from '../types/index';
 
 import { Avatar } from '@mui/material';
 import styled from 'styled-components';
 
-const Friend = ({ photoURL, displayName, id }) => {
+const Friend: NextPage<FriendProps> = ({ photoURL, displayName, id }) => {
   const { currentUser } = useAuth();
 
-  const createChat = async (id) => {
+  const createChat = async (id: string) => {
     const chatsRef = collection(db, 'chats');
     const q = query(
       chatsRef,
       where('users', 'array-contains', currentUser.uid)
     );
     const querySnapshot = await getDocs(q);
-    const chatAlreadyExist = (friend_id) =>
+    const chatAlreadyExist = (friend_id: string) =>
       !!querySnapshot?.docs.find(
         (chat) =>
-          chat.data().users.find((user) => user === friend_id)?.length > 0
+          chat.data().users.find((user: any) => user === friend_id)?.length > 0
       );
 
     if (!chatAlreadyExist(id)) {

@@ -1,14 +1,21 @@
+import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import moment from 'moment';
 
+import { ChatProps } from '../types/index';
 import getFriendData from '../utils/getFriendData';
 
 import { Avatar } from '@mui/material';
 import styled from 'styled-components';
 
-const Chat = ({ id, users, timestamp = '', latestMessage = '' }) => {
+const Chat: NextPage<ChatProps> = ({
+  id,
+  users,
+  timestamp = '',
+  latestMessage = '',
+}) => {
   const router = useRouter();
   const [friend, setFriend] = useState({});
 

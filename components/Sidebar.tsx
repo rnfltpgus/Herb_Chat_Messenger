@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
@@ -23,7 +24,7 @@ import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import styled from 'styled-components';
 
-const Sidebar = () => {
+const Sidebar: NextPage = () => {
   const router = useRouter();
   const [friends, setFriends] = useState([]);
   const [chats, setChats] = useState([]);
@@ -62,7 +63,7 @@ const Sidebar = () => {
   }, []);
 
   useEffect(() => {
-    const checkIfClickedOutside = (e) => {
+    const checkIfClickedOutside = (e: { target: any }) => {
       if (!inputAreaRef.current.contains(e.target)) {
         setTimeout(() => {
           setSearchFriends(false);

@@ -62,7 +62,7 @@ const ChatContent = ({ chat, chat_id }) => {
     }
   }, [chat_id]);
 
-  const sendMessage = async (e) => {
+  const sendMessage = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const usersRef = doc(db, 'users', currentUser.uid);

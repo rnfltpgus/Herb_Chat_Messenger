@@ -12,7 +12,7 @@ const BasicMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
+  const handleClick = (event: { currentTarget: any }) => {
     setAnchorEl(event.currentTarget);
   };
 

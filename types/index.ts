@@ -13,9 +13,21 @@ export type OnClick = (
     | React.TouchEvent<HTMLButtonElement | HTMLDivElement>
 ) => void;
 
-export interface ButtonProps {
-  label: string;
-  onClick?: OnClick;
-  color?: string;
-  hoverColor?: string;
+// Props
+export interface ChatProps {
+  id: string;
+  users: string;
+  timestamp: string;
+  latestMessage: string;
+}
+
+export interface FriendProps {
+  id: string;
+  photoURL: string;
+  displayName: string;
+}
+
+export interface ChatBoxProps {
+  id: string;
+  chat: string;
 }
