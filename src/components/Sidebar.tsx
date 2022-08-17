@@ -19,10 +19,12 @@ import CustomVerticalMore from './CustomVerticalMore';
 
 import { Avatar, IconButton } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
-import SearchIcon from '@mui/icons-material/Search';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {
+  Search,
+  Refresh,
+  NotificationsOff,
+  ArrowForwardIos,
+} from '@mui/icons-material';
 import styled from 'styled-components';
 
 const Sidebar: NextPage = () => {
@@ -93,7 +95,7 @@ const Sidebar: NextPage = () => {
         <UserAvatar src={currentUser.photoURL} />
         <IconsGroup>
           <IconButton type='button' onClick={() => router.reload()}>
-            <RefreshIcon />
+            <Refresh />
           </IconButton>
           <IconButton>
             <ChatIcon />
@@ -103,7 +105,7 @@ const Sidebar: NextPage = () => {
       </Header>
       <Notification>
         <NotificationAvatar>
-          <NotificationsOffIcon style={{ color: '#9DE1FE' }} />
+          <NotificationsOff style={{ color: '#96f879' }} />
         </NotificationAvatar>
         <NotificationText>
           <div>Get Notified of New Messages</div>
@@ -112,14 +114,14 @@ const Sidebar: NextPage = () => {
               <u>Turn on desktop notifications</u>
             </a>
             <IconButton>
-              <ArrowForwardIosIcon style={{ width: 15, height: 15 }} />
+              <ArrowForwardIos style={{ width: 15, height: 15 }} />
             </IconButton>
           </div>
         </NotificationText>
       </Notification>
       <SearchChat>
         <SearchBar>
-          <SearchIcon />
+          <Search />
           <SearchInput
             ref={inputAreaRef}
             placeholder='Search or start a new chat'
@@ -220,7 +222,7 @@ const Notification = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  background-color: #9de1fe;
+  background-color: #a7f8b3;
 `;
 
 const NotificationAvatar = styled(Avatar)`

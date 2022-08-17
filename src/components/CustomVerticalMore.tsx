@@ -6,10 +6,8 @@ import { signOut } from '@firebase/auth';
 import { auth } from '../firebase';
 import { OnClick } from '../types';
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu, MenuItem, IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { IconButton } from '@mui/material';
 
 const BasicMenu: NextPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);

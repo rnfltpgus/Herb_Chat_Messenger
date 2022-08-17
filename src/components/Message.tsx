@@ -54,12 +54,12 @@ const MessageBubble = styled.div`
 
 const MyMessage = styled(MessageBubble)`
   margin-left: auto;
-  background-color: #dcf8c6;
+  background-color: #cefbac;
   border-radius: 8px 0px 8px 8px;
 `;
 
 const FrdMessage = styled(MessageBubble)`
-  background-color: white;
+  background-color: #ffffff;
   text-align: left;
   border-radius: 0px 8px 8px 8px;
 `;

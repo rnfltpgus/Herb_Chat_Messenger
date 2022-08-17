@@ -21,11 +21,13 @@ import getFriendData from '../utils/getFriendData';
 import { ChatContentProps } from '../types';
 
 import { Avatar, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import MicIcon from '@mui/icons-material/Mic';
+import {
+  Search,
+  ArrowBack,
+  InsertEmoticon,
+  AttachFile,
+  Mic,
+} from '@mui/icons-material';
 import styled from 'styled-components';
 
 const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
@@ -106,10 +108,10 @@ const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
           <div>Last Active: {moment(friend.lastSeen?.toDate()).fromNow()}</div>
         </HeaderInfo>
         <IconButton>
-          <SearchIcon />
+          <Search />
         </IconButton>
         <IconButton type='button' onClick={() => router.back()}>
-          <ArrowBackIcon />
+          <ArrowBack />
         </IconButton>
       </Header>
       <MessagesContainer>
@@ -124,10 +126,10 @@ const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
       </MessagesContainer>
       <InputContainer>
         <IconButton>
-          <InsertEmoticonIcon />
+          <InsertEmoticon />
         </IconButton>
         <IconButton>
-          <AttachFileIcon />
+          <AttachFile />
         </IconButton>
         <Input
           onChange={(e) => setInput(e.target.value)}
@@ -137,9 +139,7 @@ const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
         <button hidden disabled={!input} type='submit' onClick={sendMessage}>
           Send message
         </button>
-        <IconButton>
-          <MicIcon />
-        </IconButton>
+        <IconButton></IconButton>
       </InputContainer>
     </Container>
   );
@@ -202,7 +202,7 @@ const Input = styled.input`
 
 const MessagesContainer = styled.div`
   padding: 20px;
-  background-color: #e5ded8;
+  background-color: #f2fae2;
   flex: 1;
   background-image: url('/bg-chat.png');
   background-attachment: fixed;

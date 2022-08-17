@@ -36,7 +36,9 @@ const Chat: NextPage<ChatProps> = ({
       <FrdAvatar src={friend.photoURL} />
       <ChatContainer>
         <div style={{ gridArea: 'name' }}>{friend.displayName}</div>
-        <div style={{ gridArea: 'latest_message' }}>{latestMessage}</div>
+        <div style={{ gridArea: 'latest_message', fontSize: '13px' }}>
+          {latestMessage}
+        </div>
         <div style={{ gridArea: 'time', fontSize: '14px' }}>
           {timestamp ? moment(timestamp?.toDate()).format('LT') : ''}
         </div>
@@ -67,12 +69,12 @@ const FrdAvatar = styled(Avatar)`
 
 const ChatContainer = styled.div`
   display: grid;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid #ededed;
-  gap: 10px;
+  gap: 8px;
   grid-template-areas:
     'name name time'
-    'latest_message latest_message.';
+    'latest_message latest_message latest_message';
 `;
