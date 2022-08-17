@@ -2,6 +2,7 @@
   "name": "herb-chat-messenger",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "main": "main/main.js",
   "scripts": {
     "dev": "next dev",
@@ -56,6 +57,7 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.10",
     "@cypress/code-coverage": "^3.10.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
