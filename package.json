@@ -9,8 +9,48 @@
     "start": "concurrently \"npm run dev\" \"npm run electron\" ",
     "lint": "next lint",
     "electron": "wait-on http://localhost:3000 && electron .",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "deploy:osx": "electron-builder --mac",
+    "deploy:win": "npm run deploy:win32 && npm run deploy:win64",
+    "deploy:win32": "electron-builder --win nsis:ia32",
+    "deploy:win64": "electron-builder --win nsis:x64"
   },
+  "build": {
+    "productName": "Herb Chat Messenger",
+    "appId": "net.jetalab.herb.chat.messenger",
+    "asar": true,
+    "mac": {
+      "target": [
+        "default"
+      ]
+    },
+    "dmg": {
+      "title": "Herb Chat Messenger"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@cypress/code-coverage": "^3.10.0",
     "@emotion/react": "^11.10.0",
@@ -22,7 +62,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "concurrently": "^7.3.0",
     "dotenv": "^16.0.1",
-    "electron": "^20.0.2",
+    "eslint-plugin-cypress": "^2.12.1",
     "firebase": "^9.9.2",
     "moment": "^2.29.4",
     "next": "12.2.4",
@@ -37,6 +77,7 @@
     "@types/react": "^18.0.17",
     "@types/styled-components": "^5.1.26",
     "cypress": "^10.4.0",
+    "electron": "^20.0.2",
     "electron-builder": "^23.3.3",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",

@@ -45,10 +45,10 @@ const BasicMenu: NextPage = () => {
           horizontal: 'right',
         }}
       >
-        <MenuItem onClick={handleClose}>New Group</MenuItem>
+        {/* <MenuItem onClick={handleClose}>New Group</MenuItem>
         <MenuItem onClick={handleClose}>Create a room</MenuItem>
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
+        <MenuItem onClick={handleClose}>Settings</MenuItem> */}
         <MenuItem onClick={() => signOut(auth)}>Logout</MenuItem>
       </Menu>
     </>

@@ -17,7 +17,7 @@ const Chat: NextPage<ChatProps> = ({
   latestMessage = '',
 }) => {
   const router = useRouter();
-  const [friend, setFriend] = useState({});
+  const [friend, setFriend] = useState<any>({});
 
   const enterChat = () => {
     router.push(`/chat/${id}`);

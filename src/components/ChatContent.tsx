@@ -30,10 +30,16 @@ import styled from 'styled-components';
 
 const ChatContent: NextPage<ChatContentProps> = ({ chat, chat_id }) => {
   const router = useRouter();
-  const [friend, setFriend] = useState({});
+  const [friend, setFriend] = useState<any>({});
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
-  const { currentUser } = useAuth();
+  const { currentUser } = useAuth() as {
+    currentUser: {
+      photoURL: any;
+      email: any;
+      uid: string;
+    };
+  };
   const chatParse = JSON.parse(chat);
 
   useEffect(() => {

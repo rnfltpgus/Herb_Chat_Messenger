@@ -17,7 +17,7 @@ export type OnClick = (
 export interface ChatProps {
   id: string;
   users: string[];
-  timestamp: string;
+  timestamp: any;
   latestMessage: string;
 }
 
@@ -38,12 +38,12 @@ export interface ChatContentProps {
 }
 
 export interface LoadingProps {
-  type: string;
+  type: any;
   color: string;
 }
 
 export interface MessageProps {
   user: string;
   message: string;
-  timestamp: string;
+  timestamp: any;
 }

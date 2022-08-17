@@ -31,7 +31,13 @@ const Sidebar: NextPage = () => {
   const [chats, setChats] = useState([]);
   const [searchFriends, setSearchFriends] = useState(false);
   const inputAreaRef = useRef(null);
-  const { currentUser } = useAuth();
+  const { currentUser } = useAuth() as {
+    currentUser: {
+      photoURL: any;
+      email: any;
+      uid: string;
+    };
+  };
 
   useEffect(() => {
     const chatsRef = collection(db, 'chats');

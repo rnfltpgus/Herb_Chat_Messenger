@@ -10,7 +10,9 @@ import { Avatar } from '@mui/material';
 import styled from 'styled-components';
 
 const Friend: NextPage<FriendProps> = ({ photoURL, displayName, id }) => {
-  const { currentUser } = useAuth();
+  const { currentUser } = useAuth() as {
+    currentUser: { uid: string };
+  };
 
   const createChat = async (id: string) => {
     const chatsRef = collection(db, 'chats');

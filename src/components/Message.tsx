@@ -9,7 +9,11 @@ import { MessageProps } from '../types/index';
 import styled from 'styled-components';
 
 const Message: NextPage<MessageProps> = ({ user, message, timestamp }) => {
-  const { currentUser } = useAuth();
+  const { currentUser } = useAuth() as {
+    currentUser: {
+      email: any;
+    };
+  };
   const loginMail = currentUser.email;
   const MessageType = user === loginMail ? MyMessage : FrdMessage;
 
