@@ -1,9 +1,14 @@
+import dynamic from 'next/dynamic';
 import { useEffect, useContext, createContext, useState } from 'react';
+
 import { doc, serverTimestamp, setDoc } from '@firebase/firestore';
 
 import { auth, db } from './firebase';
-import Loading from './components/Loading';
 import Login from './pages/login';
+
+const Loading = dynamic(() => import('./components/Loading'), {
+  ssr: false,
+});
 
 const AuthContext = createContext({});
 

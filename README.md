@@ -76,3 +76,4 @@ BROWSER=none
     - import, export의 구문을 ES5의 문법으로 변환 방지 - `시도`
     - Side-Effect 발생 방지 - `시도`
     - dynamic import 를 이용한 사이즈 줄이기 - `시도중`
+      - SSR 없이 동적으로 가져오기
