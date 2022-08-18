@@ -1,6 +1,7 @@
 # Herb Chat Messenger
 
 Next.js와 Electron을 이용한 Chat Messenger 입니다.
+<img width="1024" alt="스크린샷 2022-08-15 오후 8 49 52" src="https://user-images.githubusercontent.com/80088956/185399501-e54c4999-49d8-4620-bcfa-2e252231733b.png" width="100" height="500">
 
 <br>
 
