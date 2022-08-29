@@ -1,23 +1,23 @@
-import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-import moment from 'moment';
+import moment from "moment";
 
-import { ChatProps } from '../types/index';
-import getFriendData from '../utils/getFriendData';
+import { ChatProps, FriendProps } from "../types/index";
+import getFriendData from "../utils/getFriendData";
 
-import { Avatar } from '@mui/material';
-import styled from 'styled-components';
+import { Avatar } from "@mui/material";
+import styled from "styled-components";
 
 const Chat: NextPage<ChatProps> = ({
   id,
   users,
-  timestamp = '',
-  latestMessage = '',
+  timestamp = "",
+  latestMessage = "",
 }) => {
   const router = useRouter();
-  const [friend, setFriend] = useState<any>({});
+  const [friend, setFriend] = useState<FriendProps>({});
 
   const enterChat = () => {
     router.push(`/chat/${id}`);
@@ -35,12 +35,12 @@ const Chat: NextPage<ChatProps> = ({
     <Container onClick={enterChat}>
       <FrdAvatar src={friend.photoURL} />
       <ChatContainer>
-        <div style={{ gridArea: 'name' }}>{friend.displayName}</div>
-        <div style={{ gridArea: 'latest_message', fontSize: '13px' }}>
+        <div style={{ gridArea: "name" }}>{friend.displayName}</div>
+        <div style={{ gridArea: "latest_message", fontSize: "13px" }}>
           {latestMessage}
         </div>
-        <div style={{ gridArea: 'time', fontSize: '14px' }}>
-          {timestamp ? moment(timestamp?.toDate()).format('LT') : ''}
+        <div style={{ gridArea: "time", fontSize: "14px" }}>
+          {timestamp ? moment(timestamp?.toDate()).format("LT") : ""}
         </div>
       </ChatContainer>
     </Container>
@@ -75,6 +75,6 @@ const ChatContainer = styled.div`
   border-bottom: 1px solid #ededed;
   gap: 8px;
   grid-template-areas:
-    'name name time'
-    'latest_message latest_message latest_message';
+    "name name time"
+    "latest_message latest_message latest_message";
 `;

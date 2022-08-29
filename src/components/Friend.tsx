@@ -1,13 +1,13 @@
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 
-import { addDoc, collection, getDocs, query, where } from '@firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
 
-import { useAuth } from '../Auth';
-import { db } from '../firebase';
-import { FriendProps } from '../types/index';
+import { useAuth } from "../Auth";
+import { db } from "../firebase";
+import { FriendProps } from "../types/index";
 
-import { Avatar } from '@mui/material';
-import styled from 'styled-components';
+import { Avatar } from "@mui/material";
+import styled from "styled-components";
 
 const Friend: NextPage<FriendProps> = ({ photoURL, displayName, id }) => {
   const { currentUser } = useAuth() as {
@@ -15,22 +15,23 @@ const Friend: NextPage<FriendProps> = ({ photoURL, displayName, id }) => {
   };
 
   const createChat = async (id: string) => {
-    const chatsRef = collection(db, 'chats');
+    const chatsRef = collection(db, "chats");
     const q = query(
       chatsRef,
-      where('users', 'array-contains', currentUser.uid)
+      where("users", "array-contains", currentUser.uid)
     );
     const querySnapshot = await getDocs(q);
     const chatAlreadyExist = (friend_id: string) =>
       !!querySnapshot?.docs.find(
         (chat) =>
-          chat.data().users.find((user: any) => user === friend_id)?.length > 0
+          chat.data().users.find((user: string) => user === friend_id)?.length >
+          0
       );
 
     if (!chatAlreadyExist(id)) {
       addDoc(chatsRef, { users: [currentUser.uid, id] });
     } else {
-      console.log('❌ chat already exists');
+      console.log("❌ chat already exists");
     }
   };
 
@@ -38,7 +39,7 @@ const Friend: NextPage<FriendProps> = ({ photoURL, displayName, id }) => {
     <Container onClick={() => createChat(id)}>
       <FrdAvatar src={photoURL} />
       <ChatContainer>
-        <div style={{ gridArea: 'name' }}>{displayName}</div>
+        <div style={{ gridArea: "name" }}>{displayName}</div>
       </ChatContainer>
     </Container>
   );
@@ -71,6 +72,6 @@ const ChatContainer = styled.div`
   border-bottom: 1px solid #ededed;
   gap: 10px;
   grid-template-areas:
-    'name name time'
-    'latest_message latest_message.';
+    "name name time"
+    "latest_message latest_message.";
 `;
